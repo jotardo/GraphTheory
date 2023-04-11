@@ -29,10 +29,9 @@ public abstract class AGraph {
 	public abstract int numEdges();
 
 	public void importAdjMatrix(byte[][] newAdjMatrix) {
-//		for (int i = 0; i < maxVertex; i++)
-//			for (int j = 0; j < maxVertex; j++)
-//				this.adjMatrix[i][j] = newAdjMatrix[i][j];
-		this.adjMatrix = newAdjMatrix.clone();
+		for (int i = 0; i < maxVertex; i++)
+			for (int j = 0; j < maxVertex; j++)
+				this.adjMatrix[i][j] = newAdjMatrix[i][j];
 	}
 
 	public void printAdjMatrix() {
@@ -118,7 +117,7 @@ public abstract class AGraph {
 		while (!q.isEmpty()) {
 			v = q.poll();
 			for (int i = 0; i < this.maxVertex; i++) {
-				if (this.adjMatrix[v][i] > 0 && !visited[i]) {
+				if ((this.adjMatrix[v][i] > 0 || this.adjMatrix[i][v] > 0)  && !visited[i]) {
 					if (i == point2)
 						return true;
 					else {
